@@ -25,6 +25,9 @@ jobs:
       - name: List modified files
         id: list-files
         if: steps.checkout-branch.outputs.branch_not_found != 'true'
-      
+        run: |
+          ticket_number="${{ github.event.client_payload.issueKey }}"
+          git diff --name-only $ticket_number > modified_files.txt
+
       - name: Say hello
         run: echo "successfully completed"
