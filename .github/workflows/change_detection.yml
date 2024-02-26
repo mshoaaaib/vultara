@@ -15,17 +15,18 @@ jobs:
 
       - name: Search for branch and checkout
         id: checkout-branch
-        run: |
+         run:|
           ticket_number="${{ github.event.client_payload.issueKey }}"
           if git rev-parse --verify "$ticket_number" > /dev/null; then
             git checkout "$ticket_number"
           else
             echo "Branch $ticket_number not found. Skipping further steps."
-            exit 0
+            echo "::set-output name=branch_not_found::true" # Set an output variable
           fi
 
       - name: List modified files
         id: list-files
+        if: steps.check_branch.outputs.branch_not_found != 'true'
         run: |
           git fetch origin
           # Check for changes in the /server/database folder
