@@ -16,7 +16,7 @@ jobs:
       - name: Search for branch and checkout
         id: checkout-branch
         run: |
-          ticket_number="${{ github.event.client_payload.issue.key}}"
+          ticket_number="${{ github.event.client_payload.issueKey}}"
           if git show-ref --verify --quiet "refs/heads/$ticket_number"; then
             git checkout "$ticket_number"
           else
