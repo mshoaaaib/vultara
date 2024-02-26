@@ -15,7 +15,8 @@ jobs:
       - name: Check if branch exists
         id: check_branch
         run: |
-          if git rev-parse --verify --quiet "refs/heads/ticket_number=${{ github.event.client_payload.issueKey }}"; then
+          branch_name=$(echo "${{ github.ref }}" | awk -F'/' '{print $3}')
+          if git rev-parse --verify --quiet $branch_name; then
             echo "::set-output name=branch_exists::true"
           else
             echo "::set-output name=branch_exists::false"
@@ -24,7 +25,7 @@ jobs:
   print-dummy-text:
     needs: check-branch
     runs-on: ubuntu-latest
-    if: ${{ needs.check-branch.outputs.branch_exists == 'true' }}
+    if: steps.check_branch.outputs.branch_exists == 'true'
     steps:
       - name: Print Dummy Text
         run: echo "Dummy text to be printed"
