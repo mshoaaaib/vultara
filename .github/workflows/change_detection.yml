@@ -13,21 +13,14 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Search for branch and checkout
-        id: checkout-branch
+      - name: Check if branch name exists
         run: |
-          ticket_number="${{ github.event.client_payload.issueKey }}"
-          if ! git show-ref --quiet refs/heads/$ticket_number; then
-            echo "Branch $ticket_number does not exist. Skipping the rest of the workflow."
+          if [ "$(git rev-parse --verify --quiet ${{ github.event.client_payload.issueKey }})" ]; then
+            echo "Branch exists."
+          else
+            echo "Branch does not exist. Skipping job."
             exit 0
           fi
-
-      - name: List modified files
-        id: list-files
-        if: steps.checkout-branch.outputs.branch_not_found != 'true'
-        run: |
-          ticket_number="${{ github.event.client_payload.issueKey }}"
-          git diff --name-only $ticket_number > modified_files.txt
 
       - name: Say hello
         run: echo "successfully completed"
