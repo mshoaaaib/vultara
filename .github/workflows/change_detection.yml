@@ -15,7 +15,7 @@ jobs:
 
       - name: Search for branch and checkout
         id: checkout-branch
-         run:|
+         run: |
           ticket_number="${{ github.event.client_payload.issueKey }}"
           if git rev-parse --verify "$ticket_number" > /dev/null; then
             git checkout "$ticket_number"
