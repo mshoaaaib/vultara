@@ -26,6 +26,4 @@ jobs:
     needs: check-branch
     runs-on: ubuntu-latest
     if: steps.check_branch.outputs.branch_exists == 'true'
-    steps:
-      - name: Print Dummy Text
-        run: echo "Dummy text to be printed"
+    run: echo "Dummy text to be printed"
