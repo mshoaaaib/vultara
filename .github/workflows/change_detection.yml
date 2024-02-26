@@ -17,7 +17,7 @@ jobs:
         id: checkout-branch
         run: |
           ticket_number="${{ github.event.client_payload.issueKey }}"
-          if git show-ref --verify --quiet "refs/heads/${{ github.event_name }}"; then
+          if git show-ref --verify --quiet "$ticket_number"; then
             echo "Branch '${{ github.event_name }}' exists."
           else
             echo "Branch '${{ github.event_name }}' does not exist."
