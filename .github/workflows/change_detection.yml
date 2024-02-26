@@ -1,28 +1,30 @@
-name: Change Detection
+name: Check Branch and Print Dummy Text
 
 on:
-  repository_dispatch:
-    types:
-      - jira_issue_transition
+  push:
+    branches:
+      - main
 
 jobs:
-  process-jira-event:
+  check-branch:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
       - name: Check if branch exists
         id: check_branch
         run: |
-          branch_name=$(echo "${{ github.ref }}" | awk -F'/' '{print $3}')
-          if git rev-parse --verify --quiet $branch_name; then
+          if git rev-parse --verify --quiet "refs/heads/ticket_number=${{ github.event.client_payload.issueKey }}"; then
             echo "::set-output name=branch_exists::true"
           else
             echo "::set-output name=branch_exists::false"
           fi
-        
-      - name: Execute if branch exists
-        if: steps.check_branch.outputs.branch_exists == 'true'
-        run: echo "Successfully executed"
+      
+  print-dummy-text:
+    needs: check-branch
+    runs-on: ubuntu-latest
+    if: ${{ needs.check-branch.outputs.branch_exists == 'true' }}
+    steps:
+      - name: Print Dummy Text
+        run: echo "Dummy text to be printed"
