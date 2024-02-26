@@ -17,10 +17,10 @@ jobs:
         id: checkout-branch
         run: |
           ticket_number="${{ github.event.client_payload.issueKey }}"
-          if git rev-parse --verify "$ticket_number" > /dev/null; then
-            git checkout "$ticket_number"
+          if git show-ref --verify --quiet "refs/heads/${{ github.event_name }}"; then
+            echo "Branch '${{ github.event_name }}' exists."
           else
-            echo "Branch $ticket_number not found. Skipping further steps."
+            echo "Branch '${{ github.event_name }}' does not exist."
             exit 0
           fi
       - name: List modified files
