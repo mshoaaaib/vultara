@@ -19,7 +19,7 @@ jobs:
             echo "Branch exists."
           else
             echo "Branch does not exist. Skipping job."
-            exit 0
+            exit 1
           fi
 
       - name: Say hello
