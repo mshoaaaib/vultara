@@ -21,7 +21,7 @@ jobs:
             git checkout "$ticket_number"
           else
             echo "Branch $ticket_number not found. Skipping further steps."
-            exit 1
+            exit 0
           fi
 
       - name: List modified files
