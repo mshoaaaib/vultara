@@ -341,7 +341,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// This test script checks if the response status code is 200\r",
+									"// This test scripasdt checks if the response status code is 200\r",
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
