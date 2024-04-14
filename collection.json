@@ -1,0 +1,809 @@
+{
+	"info": {
+		"_postman_id": "e881e8b8-6dc7-4d5a-aba2-b2a40bebe330",
+		"name": "Vultara APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24260712"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// This test script checks if the response status code is 200\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"vultara_automation_test\",\r\n  \"password\": \"tJVJhiHmlIWR\",\r\n  \"projectId\": \"\",\r\n  \"milestone\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{Auth Variable}}/login",
+									"host": [
+										"{{Auth Variable}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Creating New Account",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "Create Project",
+			"item": [
+				{
+					"name": "New Project (projectDesignData)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5MTQxMzQxOSwiaWF0IjoxNjkxNDEzNDE5fQ.wiqn6e3ivvJzOx4M1izZQv2WDyKX1nJE9fihKWYWmrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"project\": {\r\n    \"project\": {\r\n      \"id\": \"apitesting123\",\r\n      \"name\": \"API Automation Testing\",\r\n      \"notes\": \"\",\r\n      \"product\": \"\",\r\n      \"projectCode\": \"\",\r\n      \"variant\": \"\",\r\n      \"customer\": \"\",\r\n      \"child\": false,\r\n      \"attackFeasibilityView\": \"Attack Potential\",\r\n      \"customProjectField\": \"\",\r\n      \"removedUserArr\": [],\r\n      \"addedUserArr\": [],\r\n      \"threatListBottomPanel\": \"Control\"\r\n    },\r\n    \"micro\": [],\r\n    \"controlUnit\": [],\r\n    \"commLine\": [],\r\n    \"boundary\": [],\r\n    \"html\": \"\"\r\n  },\r\n  \"userAccessIdArr\": [],\r\n  \"projectId\": \"apitesting123\",\r\n  \"milestone\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/projects/projectDb",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"projects",
+								"projectDb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Project (projectInfo)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"project\" : {\r\n\"id\":\"apitesting123\",\r\n\"name\" : \"API Automation Testing\" \r\n \r\n},  \r\n\"projectInfo\" : true \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/projectInfo",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"projectInfo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Generating Lists",
+			"item": [
+				{
+					"name": "Generate Threat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5MTQxMzQxOSwiaWF0IjoxNjkxNDEzNDE5fQ.wiqn6e3ivvJzOx4M1izZQv2WDyKX1nJE9fihKWYWmrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"threat\": {\r\n    \"componentId\": \"\",\r\n    \"asset\": \"\",\r\n    \"assetType\": \"\",\r\n    \"attackFeasibility\": 0,\r\n    \"attackFeasibilityLevel\": \"\",\r\n    \"attackPath\": [],\r\n    \"attackPathAction\": [],\r\n    \"attackPathName\": \"\",\r\n    \"attackSurface\": false,\r\n    \"id\": \"apitesting123\",\r\n    \"threatRiskAllId\": \"\",\r\n    \"fromFeature\": \"\",\r\n    \"impactF\": 1,\r\n    \"impactS\": 1,\r\n    \"impactO\": 1,\r\n    \"impactP\": 1,\r\n    \"impactFLevel\": \"\",\r\n    \"impactSLevel\": \"\",\r\n    \"impactOLevel\": \"\",\r\n    \"impactPLevel\": \"\",\r\n    \"damageScenario\": \"\",\r\n    \"impactOriginCompAssFea\": [],\r\n    \"module\": \"\",\r\n    \"nickName\": \"\",\r\n    \"riskScore\": 4,\r\n    \"riskLevel\": 4,\r\n    \"securityPropertyCia\": \"\",\r\n    \"securityPropertyStride\": \"\",\r\n    \"threatScenario\": \"\",\r\n    \"treatment\": \"no treatment\",\r\n    \"treatmentVal\": false,\r\n    \"type\": \"userCreated\",\r\n    \"reviewed\": false,\r\n    \"reviewedBy\": \"\",\r\n    \"isExpanded\": false,\r\n    \"attackPathStep\": [],\r\n    \"componentName\": [],\r\n    \"lastModifiedBy\": \"65c5f0f2a016cb6e6f675895\",\r\n    \"threatSource\": \"userManual\",\r\n    \"reviewStatusForFilter\": \"to-review\",\r\n    \"validateStatusForFilter\": \"to-validate\",\r\n    \"threatRowNumber\": 70,\r\n    \"projectId\": \"apitesting123\"\r\n  },\r\n  \"projectId\": \"apitesting123\",\r\n  \"milestone\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/projects/threatsDb",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"projects",
+								"threatsDb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Vulnerabilities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5MTQxMzQxOSwiaWF0IjoxNjkxNDEzNDE5fQ.wiqn6e3ivvJzOx4M1izZQv2WDyKX1nJE9fihKWYWmrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"cveDataMetaIds\": \"\",\r\n    \"description\": \"\",\r\n    \"reviewed\": false,\r\n    \"treatment\": \"\",\r\n    \"overAllCVSSScore\": \"0.0\",\r\n    \"baseSeverity\": \"NONE\",\r\n    \"publishedDate\": \"\",\r\n    \"hbom\": {\r\n      \"product\": \"\"\r\n    },\r\n    \"sbom\": {\r\n      \"product\": \"\"\r\n    },\r\n    \"vulnerabilitySource\": \"\",\r\n    \"highlighted\": false,\r\n    \"lastModifiedBy\": \"651bc5ac2743ddd81d52ecb2\",\r\n    \"reviewedBy\": \"\",\r\n    \"reviewStatusRevokedBy\": \"\",\r\n    \"treatmentStatusChangedBy\": \"\",\r\n    \"validated\": false,\r\n    \"validatedBy\": \"\",\r\n    \"validateStatusRevokedBy\": \"\",\r\n    \"vectorString\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N\",\r\n    \"version\": \"3.1\",\r\n    \"vulnerabilityStatus\": 0,\r\n    \"addedDate\": \"2024-02-09T12:31:27.920Z\",\r\n    \"vulnerabilitySourceFrom\": \"\",\r\n    \"vulnerabilityReporter\": \"\",\r\n    \"responsibleUserId\": \"\",\r\n    \"temporalScoreNotes\": \"\",\r\n    \"baseScoreNotes\": \"\",\r\n    \"environmentalSourceNotes\": \"\",\r\n    \"remediationTextArea\": \"\",\r\n    \"mitigationTextArea\": \"\",\r\n    \"validationMethodTextArea\": \"\",\r\n    \"validationResultTextArea\": \"\",\r\n    \"vulnerabilityManagementNotesTextArea\": \"\",\r\n    \"targetRemediation\": \"\",\r\n    \"customFields\": [\r\n      {\r\n        \"fieldId\": \"65b97c3c08019b0afa0ef49b\",\r\n        \"value\": null\r\n      },\r\n      {\r\n        \"fieldId\": \"65ba6a33cb61a7757f5c1a60\",\r\n        \"value\": null\r\n      }\r\n    ],\r\n    \"isNotified\": true,\r\n    \"raisedBy\": \"651bc5ac2743ddd81d52ecb2\",\r\n    \"projectId\": \"apitesting123\"\r\n  },\r\n  \"added\": true,\r\n  \"projectId\": \"apitesting123\",\r\n  \"milestone\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/vulnerability",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"vulnerability"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Weakness",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5MTQxMzQxOSwiaWF0IjoxNjkxNDEzNDE5fQ.wiqn6e3ivvJzOx4M1izZQv2WDyKX1nJE9fihKWYWmrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"dateIdentified\": \"\",\r\n    \"identificationMethod\": \"\",\r\n    \"sourceNotes\": \"\",\r\n    \"component\": \"\",\r\n    \"componentId\": \"\",\r\n    \"attackSurface\": \"\",\r\n    \"asset\": \"\",\r\n    \"weaknessDescription\": \"Added through API\",\r\n    \"cweId\": \"\",\r\n    \"weaknessNumber\": \"\",\r\n    \"cweWeaknessType\": \"\",\r\n    \"cweWeaknessCategory\": \"\",\r\n    \"projectId\": \"apitesting123\",\r\n    \"sourceLink\": \"\",\r\n    \"lastModifiedBy\": \"651bc5ac2743ddd81d52ecb2\",\r\n    \"responsibleUserId\": \"\"\r\n  },\r\n  \"projectId\": \"apitesting123\",\r\n  \"milestone\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/weakness",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"weakness"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5MTQxMzQxOSwiaWF0IjoxNjkxNDEzNDE5fQ.wiqn6e3ivvJzOx4M1izZQv2WDyKX1nJE9fihKWYWmrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"projectId\": \"apitesting123\",\r\n  \"data\": {\r\n    \"eventId\": \"\",\r\n    \"eventDate\": \"2024-02-09T14:06:52.991Z\",\r\n    \"createdAt\": \"\",\r\n    \"eventDetails\": \"API automation test\",\r\n    \"eventPriority\": \"\",\r\n    \"eventTriggerName\": \"\",\r\n    \"eventStatus\": 0,\r\n    \"eventCybersecurityInfoId\": null,\r\n    \"responsibleUserId\": \"\",\r\n    \"evaluationNotes\": \"\",\r\n    \"evaluationStatus\": 0,\r\n    \"linkedWeaknessesLength\": 0,\r\n    \"projectId\": \"apitesting123\",\r\n    \"lastModifiedBy\": \"651bc5ac2743ddd81d52ecb2\"\r\n  },\r\n  \"milestone\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/cybersecurityEvent",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"cybersecurityEvent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pool",
+			"item": [
+				{
+					"name": "Add Control",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5MTQxMzQxOSwiaWF0IjoxNjkxNDEzNDE5fQ.wiqn6e3ivvJzOx4M1izZQv2WDyKX1nJE9fihKWYWmrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"id\": \"9ht39nLEJ0crTGnAbIw5\",\r\n    \"rowNumber\": 1,\r\n    \"createdBy\": \"651bc5ac2743ddd81d52ecb2\",\r\n    \"createdAtDateTime\": \"2024-02-09T14:11:48.821Z\",\r\n    \"content\": \"test\",\r\n    \"threatId\": [],\r\n    \"type\": \"control\",\r\n    \"name\": \"\",\r\n    \"libraryId\": \"\",\r\n    \"description\": \"\",\r\n    \"goalId\": [],\r\n    \"categoryId\": \"\",\r\n    \"categoryName\": \"\",\r\n    \"requirementId\": [],\r\n    \"requirementArray\": [],\r\n    \"projectId\": \"apitesting123\",\r\n    \"attackFeasibilityElapsedReduction\": 19,\r\n    \"attackFeasibilityExpertiseReduction\": 8,\r\n    \"attackFeasibilityKnowledgeReduction\": 11,\r\n    \"attackFeasibilityWindowReduction\": 10,\r\n    \"attackFeasibilityEquipmentReduction\": 9\r\n  },\r\n  \"added\": true,\r\n  \"addFromLib\": false,\r\n  \"projectId\": \"apitesting123\",\r\n  \"milestone\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/projects/projectControl",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"projects",
+								"projectControl"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add New Goal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5MTQxMzQxOSwiaWF0IjoxNjkxNDEzNDE5fQ.wiqn6e3ivvJzOx4M1izZQv2WDyKX1nJE9fihKWYWmrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"cveDataMetaIds\": \"\",\r\n    \"description\": \"\",\r\n    \"reviewed\": false,\r\n    \"treatment\": \"\",\r\n    \"overAllCVSSScore\": \"0.0\",\r\n    \"baseSeverity\": \"NONE\",\r\n    \"publishedDate\": \"\",\r\n    \"hbom\": {\r\n      \"product\": \"\"\r\n    },\r\n    \"sbom\": {\r\n      \"product\": \"\"\r\n    },\r\n    \"vulnerabilitySource\": \"\",\r\n    \"highlighted\": false,\r\n    \"lastModifiedBy\": \"651bc5ac2743ddd81d52ecb2\",\r\n    \"reviewedBy\": \"\",\r\n    \"reviewStatusRevokedBy\": \"\",\r\n    \"treatmentStatusChangedBy\": \"\",\r\n    \"validated\": false,\r\n    \"validatedBy\": \"\",\r\n    \"validateStatusRevokedBy\": \"\",\r\n    \"vectorString\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N\",\r\n    \"version\": \"3.1\",\r\n    \"vulnerabilityStatus\": 0,\r\n    \"addedDate\": \"2024-02-09T12:31:27.920Z\",\r\n    \"vulnerabilitySourceFrom\": \"\",\r\n    \"vulnerabilityReporter\": \"\",\r\n    \"responsibleUserId\": \"\",\r\n    \"temporalScoreNotes\": \"\",\r\n    \"baseScoreNotes\": \"\",\r\n    \"environmentalSourceNotes\": \"\",\r\n    \"remediationTextArea\": \"\",\r\n    \"mitigationTextArea\": \"\",\r\n    \"validationMethodTextArea\": \"\",\r\n    \"validationResultTextArea\": \"\",\r\n    \"vulnerabilityManagementNotesTextArea\": \"\",\r\n    \"targetRemediation\": \"\",\r\n    \"customFields\": [\r\n      {\r\n        \"fieldId\": \"65b97c3c08019b0afa0ef49b\",\r\n        \"value\": null\r\n      },\r\n      {\r\n        \"fieldId\": \"65ba6a33cb61a7757f5c1a60\",\r\n        \"value\": null\r\n      }\r\n    ],\r\n    \"isNotified\": true,\r\n    \"raisedBy\": \"651bc5ac2743ddd81d52ecb2\",\r\n    \"projectId\": \"apitesting123\"\r\n  },\r\n  \"added\": true,\r\n  \"projectId\": \"apitesting123\",\r\n  \"milestone\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/projects/cybersecurityGoals",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"projects",
+								"cybersecurityGoals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Weakness",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5MTQxMzQxOSwiaWF0IjoxNjkxNDEzNDE5fQ.wiqn6e3ivvJzOx4M1izZQv2WDyKX1nJE9fihKWYWmrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"dateIdentified\": \"\",\r\n    \"identificationMethod\": \"\",\r\n    \"sourceNotes\": \"\",\r\n    \"component\": \"\",\r\n    \"componentId\": \"\",\r\n    \"attackSurface\": \"\",\r\n    \"asset\": \"\",\r\n    \"weaknessDescription\": \"Added through API\",\r\n    \"cweId\": \"\",\r\n    \"weaknessNumber\": \"\",\r\n    \"cweWeaknessType\": \"\",\r\n    \"cweWeaknessCategory\": \"\",\r\n    \"projectId\": \"apitesting123\",\r\n    \"sourceLink\": \"\",\r\n    \"lastModifiedBy\": \"651bc5ac2743ddd81d52ecb2\",\r\n    \"responsibleUserId\": \"\"\r\n  },\r\n  \"projectId\": \"apitesting123\",\r\n  \"milestone\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/weakness",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"weakness"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5MTQxMzQxOSwiaWF0IjoxNjkxNDEzNDE5fQ.wiqn6e3ivvJzOx4M1izZQv2WDyKX1nJE9fihKWYWmrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"projectId\": \"apitesting123\",\r\n  \"data\": {\r\n    \"eventId\": \"\",\r\n    \"eventDate\": \"2024-02-09T14:06:52.991Z\",\r\n    \"createdAt\": \"\",\r\n    \"eventDetails\": \"API automation test\",\r\n    \"eventPriority\": \"\",\r\n    \"eventTriggerName\": \"\",\r\n    \"eventStatus\": 0,\r\n    \"eventCybersecurityInfoId\": null,\r\n    \"responsibleUserId\": \"\",\r\n    \"evaluationNotes\": \"\",\r\n    \"evaluationStatus\": 0,\r\n    \"linkedWeaknessesLength\": 0,\r\n    \"projectId\": \"apitesting123\",\r\n    \"lastModifiedBy\": \"651bc5ac2743ddd81d52ecb2\"\r\n  },\r\n  \"milestone\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/cybersecurityEvent",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"cybersecurityEvent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete Project",
+			"item": [
+				{
+					"name": "DEL projectInfo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"projectUid\": \"apitesting123\",\r\n    \"projectId\": \"\",\r\n    \"milestone\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/projectInfo?projectUid=apitesting123&projectId=&milestone=false",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"projectInfo"
+							],
+							"query": [
+								{
+									"key": "projectUid",
+									"value": "apitesting123"
+								},
+								{
+									"key": "projectId",
+									"value": ""
+								},
+								{
+									"key": "milestone",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL assets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"projectUid\": \"apitesting123\",\r\n    \"projectId\": \"\",\r\n    \"milestone\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/assets/assetLib/usedInProjectId",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"assets",
+								"assetLib",
+								"usedInProjectId"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL uploadFile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test script checks if the response status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"folderName\": \"attachments\",\r\n    \"projectId\":\"apitesting123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIURL}}/uploadFile",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"uploadFile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "APIURL",
+			"value": "http://localhost:4201/api"
+		},
+		{
+			"key": "Auth Variable",
+			"value": "http://localhost:4321/auth"
+		}
+	]
+}
